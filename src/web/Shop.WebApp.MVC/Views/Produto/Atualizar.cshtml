@@ -1,0 +1,95 @@
+﻿@using Shop.WebApp.MVC.ViewModels
+@model ProdutoViewModel
+
+@{
+    var title = "Atualizar";
+}
+
+<form method="post" asp-action="Atualizar">
+    @*<vc:Summary></vc:Summary>*@
+
+    <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="   backgroundWhite border col-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+            <div class="col-12">
+                <h2 class="textColor">@title</h2>
+                <br />
+            </div>
+
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <ejs-textbox id="Nome" cssClass="e-outline" placeholder="Nome" floatLabelType="Always" ejs-for="Nome"></ejs-textbox>
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-6">
+                        <ejs-textbox id="Descricao" cssClass="e-outline" placeholder="Descrição" floatLabelType="Always" ejs-for="Descricao"></ejs-textbox>
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <ejs-numerictextbox id="EstoqueMinimo" format="c2" cssClass="e-outline" placeholder="Quantidade" floatLabelType="Always" ejs-for="EstoqueMinimo"></ejs-numerictextbox>
+                        <span asp-validation-for="EstoqueMinimo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-4">
+                        <ejs-numerictextbox id="ValorCompra" format="c2" cssClass="e-outline" placeholder="Valor de Compra" floatLabelType="Always" ejs-for="ValorCompra"></ejs-numerictextbox>
+                        <span asp-validation-for="ValorCompra" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-4">
+                        <ejs-numerictextbox id="ValorVenda" format="c2" cssClass="e-outline" placeholder="Valor de Venda" floatLabelType="Always" ejs-for="ValorVenda"></ejs-numerictextbox>
+                        <span asp-validation-for="ValorVenda" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <select class="form-control" asp-for="CategoriaId" asp-items="@Model.Categorias.ToList()">
+                            <option selected disabled>--Selecione a Categoria--</option>
+                        </select>
+                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="row">
+
+                            <div class="col">
+                                <a asp-action="Index" class="btn controlColor form-control">
+                                    <i class="icon-reply" aria-hidden="true"></i>&nbsp;
+                                    Voltar para Lista
+                                </a>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn controlColor form-control">
+                                    <i class="icon-save" aria-hidden="true"></i>&nbsp;&nbsp;Salvar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-3"></div>*@
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+
+<script>
+    BuscaCep();
+</script>
+}

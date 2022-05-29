@@ -1,0 +1,5 @@
+using Shop.Core.WebApi;
+using Shop.WebApp.MVC;
+
+var builder = WebApplication.CreateBuilder(args).UseStartup<Startup>();
+

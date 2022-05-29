@@ -1,0 +1,68 @@
+version : '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbit-shop
+    tty: true
+    restart: always   
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "MeuDb@123"
+
+  db_mysql:
+    image: mysql:5.7
+    container_name: docker_mysql
+    restart: always
+    networks:
+      - default
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: MeuDb@123
+      MYSQL_ROOT_PASSWORD:  MeuDb@123
+      MYSQL_DATABASE: shop
+
+    ports:
+      - 13306:3306
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
+  shop_mvc:
+    image: shop-mvc
+    container_name: shop-web-mvc
+    build:
+      context: ../src
+      dockerfile: ./web/Shop.WebApp.MVC/Dockerfile
+    restart: always   
+    networks:
+      - default
+    ports:
+      - 5300:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      #- ASPNETCORE_URLS=http://*:5300
+
+  shop_api:
+    image: shop-api
+    container_name:  shop-web-api   
+    build: 
+      context: ../src
+      dockerfile: ./web/Shop.WebApi/Dockerfile
+    restart: always    
+    networks:
+      - default
+    ports:
+      - "5101:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - rabbitmq
+      - db_mysql
+
+volumes:
+  dpkeys:
+
+# docker-compose -f shop_producao.yml up --build

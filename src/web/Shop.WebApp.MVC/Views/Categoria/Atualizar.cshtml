@@ -1,0 +1,60 @@
+﻿@using Shop.WebApp.MVC.ViewModels
+@model CategoriaViewModel
+
+@{
+    var title = "Atualizar";
+}
+
+<form method="post" asp-action="Atualizar">
+    
+    <vc:Summary></vc:Summary>
+    <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="   backgroundWhite border col-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="col-12">
+                <h2 class="textColor">@title</h2>
+                <br/>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group row">
+
+                    <div class="col-12">
+                        <ejs-textbox id="Descricao" cssClass="e-outline" placeholder="Descricao" floatLabelType="Always" ejs-for="Nome"></ejs-textbox>
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <div class="row">
+
+                            <div class="col">
+                                <a asp-action="Index" class="btn controlColor form-control">
+                                    <i class="icon-reply" aria-hidden="true"></i>&nbsp;
+                                    Voltar para Lista
+                                </a>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn controlColor form-control" asp-route-id="@Model">
+                                    <i class="icon-refresh2" aria-hidden="true"></i>&nbsp;
+                                    Atualizar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-3"></div>*@
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+	@{
+    <partial name="_ValidationScriptsPartial" />
+	}
+}

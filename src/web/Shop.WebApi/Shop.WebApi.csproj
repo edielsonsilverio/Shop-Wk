@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>50db7427-c050-42bb-8d6c-001d056a6900</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\Shop.Core.WebApi\Shop.Core.WebApi.csproj" />
+    <ProjectReference Include="..\..\building blocks\Shop.Message.Email\Shop.Message.Email.csproj" />
+    <ProjectReference Include="..\..\building blocks\Shop.MessageBus\Shop.MessageBus.csproj" />
+    <ProjectReference Include="..\..\services\Shop.DataAccess\Shop.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
